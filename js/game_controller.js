@@ -10,10 +10,7 @@ var GameController = Class.extend({
             x: 15, y: 15
         });
 
-        this.food = {
-            x: 0,
-            y: 0
-        };
+        this.food = null;
 
         this.game_over = false;
 
@@ -74,8 +71,7 @@ var GameController = Class.extend({
         if(this.isCollidingWithFood(next)) {
             console.log('colliding with food');
             this.updateScore();
-            this.food.x = null;
-            this.food.y = null;
+            this.food = null;
 
             eating = true;
             this.spawnFood();
@@ -143,12 +139,13 @@ var GameController = Class.extend({
 
     spawnFood: function() {
         do   {
-            console.log('spawn food!');
+            
             this.food = {
-                x: Math.round(Math.random() * this.width),
-                y: Math.round(Math.random() * this.height)
+                x: Math.round(Math.random() * (this.width - 1)),
+                y: Math.round(Math.random() * (this.height - 1))
             }
-        } while (this.snake.isCollidingWithSelf(this.food));
+            console.log('spawn food!', this.food);
+        } while (this.food && this.snake.isCollidingWithSelf(this.food));
     },
 
     renderFood: function() {
