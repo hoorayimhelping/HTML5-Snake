@@ -1,0 +1,14 @@
+canvas { 
+	background-color: #85D29A;
+	border: 1px solid black;
+}
+
+body {
+	
+}
+
+#score {
+	font-size: 26px;
+	font-family: helvetica;
+	color: linear-gradient('dodgerblue', 'skyblue', 'blue');
+}

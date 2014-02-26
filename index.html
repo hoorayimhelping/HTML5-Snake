@@ -8,15 +8,30 @@
     <script type="text/javascript" src="js/mousetrap.js"></script>
     <script type="text/javascript" src="js/class.js"></script>
     <script type="text/javascript" src="js/moveable_entity.js"></script>
+    <script type="text/javascript" src="js/snake.js"></script>
     <script type="text/javascript" src="js/game_controller.js"></script>
+    
+    <audio src="Danger_Zone.mp3" autoplay='autoplay'><source src="Danger_Zone.mp3" type='audio/mpeg'></source></audio>
 </head>
 <body>
     <canvas id="canvas" width="600" height="400">
         bro, do you even modern browser?
     </canvas>
+    <div id="score">0</div>
 
     <script type="text/javascript">
-        new GameController(document.getElementById('canvas'));
+        var gc = new GameController(document.getElementById('canvas')),
+            startGame = function(difficulty) {
+                gc.startGame(difficulty);
+                var elements = document.getElementsByClassName('start_button');
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].style.display = 'none';
+                }
+            };
     </script>
+
+    <button id="easy_btn" class="start_button" onclick="startGame('easy')">Easy</button>
+    <button id="medium_btn" class="start_button" onclick="startGame('medium')">Medium</button>
+    <button id="hard_btn" class="start_button" onclick="startGame('hard')">Hard</button>
 </body>
 </html>
